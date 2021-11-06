@@ -16,9 +16,7 @@ class Funciones {
   };
 
   cuentaCaracteres = function (cadena) {
-    let result = this.isString(cadena) 
-        ? cadena.length 
-        : "Introduce una cadena";
+    let result = this.isString(cadena) ? cadena.length : "Introduce una cadena";
 
     return result;
   };
