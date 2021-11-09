@@ -11,43 +11,50 @@ class Funciones {
     this.cadena = cadena;
   }
   //valida la entrada
-  isString = function (cadena) {
-    return typeof cadena === "string" ? true : false;
+  isString = (cadena) => typeof cadena === "string" ? true : false;
+
+  cuentaCaracteres = (cadena) => {
+    return this.isString(cadena)
+      ? cadena.length
+      : "Debes introducir una cadena";
   };
 
-  cuentaCaracteres = function (cadena) {
-    let result = this.isString(cadena) ? cadena.length : "Introduce una cadena";
+  recortaCadena = (cadena, corte = undefined) => {
+    if (!this.isString(cadena)) return "Debes introducir una cadena";
 
-    return result;
+    if (this.isString(corte) || corte === undefined)
+      return "Debes introducir un numero donde cortar la cadena";
+
+    return cadena.slice(0, corte);
   };
 
-  recortaCadena = function (cadena, corte) {
-    let result = this.isString(cadena)
-      ? cadena.slice(0, corte)
-      : "Introduce una cadena";
+  divideCadena = (cadena, separador = false) => {
+    if (!this.isString(cadena) || cadena.length === 0)
+      return "Debes introducir una cadena";
 
-    return result;
+    if (!separador) return "Debes introducir un separador";
+
+    return cadena.split(separador);
   };
 
-  divideCadena = function (cadena, separador) {
-    let result = this.isString(cadena) ? cadena.split(separador) : "Error";
+  multiplicaCadena = (cadena, multiplo = 0) => {
+    if (!this.isString(cadena)) return "Debes introducir una cadena";
 
-    return result;
-  };
+    if (!multiplo) return "El multiplo no puede ser menor que 1";
 
-  multiplicaCadena = function (cadena, multiplo) {
-    let result =
-      this.isString(cadena) && !isNaN(multiplo)
-        ? cadena.repeat(multiplo)
-        : "Error";
+    let salida = "";
 
-    return result;
+    for (let i = 0; i < multiplo; i++) {
+      salida += ` ${cadena}`;
+    }
+
+    return salida;
   };
 }
 
 let misFunciones = new Funciones();
 
 console.log(misFunciones.cuentaCaracteres("Hola"));
-console.log(misFunciones.recortaCadena("Hola Mundo", 3));
-console.log(misFunciones.divideCadena("Hola Mundo", " "));
+console.log(misFunciones.recortaCadena("Hola Mundo", 4));
+console.log(misFunciones.divideCadena("Hola mundo", " "));
 console.log(misFunciones.multiplicaCadena("Hola Mundo", 5));
